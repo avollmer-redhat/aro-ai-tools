@@ -87,22 +87,29 @@ The Primary is the Interrupt Collector (IC). Responsibilities:
 
 ## Core Principles
 
-1. **If it's not in the handover notes, it didn't happen.** Every action,
+1. **Maintain professionalism in all outward-facing output.** Handover
+   notes, Slack messages, and JIRA updates are read by peers, managers,
+   and partner teams. Keep the tone factual and constructive. Complaints,
+   frustrations, blame, and process grievances belong in the private shift
+   log or in direct conversation with your manager — never in handover
+   notes or public channels.
+
+2. **If it's not in the handover notes, it didn't happen.** Every action,
    decision, and status change must be recorded — either in the shift
    shift log or in the handover notes. Verbal-only updates are lost.
 
-2. **Every JIRA ticket created during oncall must have the `oncall` label.**
+3. **Every JIRA ticket created during oncall must have the `oncall` label.**
    This is non-negotiable. It enables filtering oncall interrupt work from
    planned sprint work. Note: the shift log is NOT a JIRA ticket.
    JIRA tickets are reserved for actual work products (incidents, bugs,
    tasks). The shift log is a local markdown file.
 
-3. **Chat excerpts must include attribution.** When recording Slack messages
+4. **Chat excerpts must include attribution.** When recording Slack messages
    or conversations, always capture: **who** said it, **when** (timestamp),
    and **where** (Slack link if available). Ask for the Slack link if not
    provided.
 
-4. **Prioritization order is fixed:**
+5. **Prioritization order is fixed:**
    1. Situational awareness (quality call notes, handover ticket dashboard)
    2. Rollouts (active, failed, blocked)
    3. Time-sensitive / important items (CCOA exceptions, approvals, deadlines)
@@ -110,7 +117,7 @@ The Primary is the Interrupt Collector (IC). Responsibilities:
    5. Check alerts (proactive problem detection)
    6. Routine monitoring (IcM, Prow, Azure Pipelines, dashboards)
 
-5. **IcM alerts have a hard SLA.** All Sev 2 and below critical alerts must
+6. **IcM alerts have a hard SLA.** All Sev 2 and below critical alerts must
    be acknowledged within 30 minutes. This is not optional.
 
 ## Parameters
@@ -465,6 +472,12 @@ new dominant failure pattern.
 from prior shifts, and similar process observations are valuable for
 management analysis but do not help the incoming IC. Record them in the
 shift log under "Lesson Learned" but omit from handover notes.
+
+**The "Rate your shift" blurb is part of the handover.** The same
+content-filtering rules above apply to the star-rating summary line.
+Keep it to operational facts (what broke, what was fixed, workload
+level). Do not include process complaints, late-handover mentions, or
+internal frustrations — those belong in the shift log only.
 
 After writing the file, tell the user: *"Handover written to
 `/tmp/handover-slack.txt` and displayed above — copy from whichever
