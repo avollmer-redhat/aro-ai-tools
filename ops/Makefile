@@ -1,7 +1,7 @@
 REVISION := $(shell git log -1 --format="%cd-%h" --date=format:"%Y%m%d%H%M")
 
-SCRIPTS_DIRS := skills/aro-hcp-env-info/scripts skills/aro-classic-env-info/scripts
-UPDATED_FILES := $(foreach dir,$(SCRIPTS_DIRS),$(dir)/get-env-config.sh $(dir)/get-env-config.ps1)
+SCRIPTS_DIRS := skills/aro-env-info/scripts
+UPDATED_FILES := $(foreach dir,$(SCRIPTS_DIRS),$(dir)/*.sh $(dir)/*.ps1)
 
 .PHONY: update
 update:
@@ -26,7 +26,7 @@ update:
 # once per tenant you're logged into (RH and MSFT) to cover all three RGs.
 .PHONY: push-latest
 push-latest:
-	@rev=$$(sed -n 's/^PLUGIN_REVISION="\(.*\)"/\1/p' skills/aro-hcp-env-info/scripts/get-env-config.sh); \
+	@rev=$$(sed -n 's/^PLUGIN_REVISION="\(.*\)"/\1/p' skills/aro-env-info/scripts/hcp-get-env-config.sh); \
 	[ -n "$$rev" ] || { echo "Couldn't read PLUGIN_REVISION from script" >&2; exit 1; }; \
 	user=$$(az account show --query 'user.name' -o tsv) || { echo "Not logged into Azure?" >&2; exit 1; }; \
 	echo "Logged in as: $$user"; \
