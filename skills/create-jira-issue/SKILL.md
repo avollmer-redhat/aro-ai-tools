@@ -192,13 +192,37 @@ select from the Team Field Values table and offer to create the override file.
 | Team Skippy | SRE - Skippy |
 | ARO - Staff | For tickets owned by Ademar's directs |
 
-Set the Team field in `additional_fields` using the `customfield_10001` key:
+Set the Team field in `additional_fields` using the `customfield_10001` key.
+
+> **MCP API format**: The Atlassian Team field is a special custom field type.
+> When **creating** an issue via `mcp_jira_createJiraIssue`, pass it as an
+> object: `{"name": "ARO HCP - Service Lifecycle West"}`.
+> When **editing** an existing issue via `mcp_jira_editJiraIssue`, pass the
+> team ID as a **bare string** (not an object). For example:
+> `"customfield_10001": "6848a854-2fcb-49c8-9198-df4e8f80cfd3"`.
+> To find the correct ID, read `customfield_10001` from any ticket that
+> already has the desired team set and copy the `id` field from the response.
 
 ```
+# For createJiraIssue (additional_fields):
 additional_fields:
   customfield_10001:
     name: "ARO HCP - Service Lifecycle West"   # use user's team value
+
+# For editJiraIssue (fields):
+fields:
+  customfield_10001: "6848a854-2fcb-49c8-9198-df4e8f80cfd3"  # bare string ID
 ```
+
+#### Known Team IDs
+
+| Team Field Value | Team ID |
+|------------------|---------|
+| ARO HCP - Service Lifecycle West | `6848a854-2fcb-49c8-9198-df4e8f80cfd3` |
+| ARO HCP - Service Lifecycle | `dc261cbc-b81e-4292-9b03-0e7a741eac28` |
+
+> To discover IDs for other teams, query any ticket with that team set and
+> read the `customfield_10001.id` value from the response.
 
 ### Step 4 -- Select Labels
 
@@ -389,7 +413,7 @@ additional_fields:
     - id: "83786"            # primary component (functional area)
     - id: "84116"            # secondary if oncall
   customfield_10001:
-    name: "ARO HCP - Service Lifecycle West"  # Team field (from SKILL.local.md)
+    name: "ARO HCP - Service Lifecycle West"  # Team field — object form for createJiraIssue
   customfield_10020: 67024   # current sprint ID (bare integer!)
   customfield_10014: AROSLSRE-XXX  # parent Epic (optional)
 ```
@@ -714,7 +738,7 @@ Before closing an issue, verify (from governance doc):
 
 | Field | Key | Value Type | Notes |
 |-------|-----|------------|-------|
-| Team | customfield_10001 | object `{"name": "..."}` | **Required.** Source of truth for team ownership. See Team Field Values table. |
+| Team | customfield_10001 | **create**: object `{"name": "..."}`, **edit**: bare string ID | **Required.** Source of truth for team ownership. See Team Field Values table and Known Team IDs. |
 | Sprint | customfield_10020 | bare integer | **Not** an object |
 | Story Points | customfield_10028 | number | **Not currently used by SL SRE team** |
 | Epic Link | customfield_10014 | string (issue key) | Parent Epic |
@@ -782,11 +806,15 @@ Before closing an issue, verify (from governance doc):
     JIRA. Include size estimates in the description instead. Do not set
     `customfield_10028`.
 
-14. **Team field** (`customfield_10001`): Required on all new tickets. Pass as
-    `{"name": "ARO HCP - Service Lifecycle West"}`. The value must exactly
-    match one of the Team Field Values listed above. The Team field replaces
-    component-based and label-based team identification. Store the user's team
-    in `SKILL.local.md` so it does not need to be specified each time.
+14. **Team field** (`customfield_10001`): Required on all new tickets. When
+    **creating** an issue, pass as `{"name": "ARO HCP - Service Lifecycle West"}`.
+    When **editing** an existing issue via `mcp_jira_editJiraIssue`, pass the
+    team ID as a **bare string**: `"6848a854-2fcb-49c8-9198-df4e8f80cfd3"`.
+    Passing `{"name": ...}` or `{"id": ...}` to `editJiraIssue` will fail.
+    To find a team's ID, read `customfield_10001.id` from any ticket that
+    already has that team set. The value must match one of the Team Field
+    Values listed above. Store the user's team name and ID in `SKILL.local.md`
+    so it does not need to be specified each time.
 
 ## MCP Tools Reference
 
