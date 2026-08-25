@@ -56,6 +56,8 @@ Follow these instructions for infrastructure common to both ARO HCP and Classic.
 
 ### ARM Logs Access
 
+These kusto clusters contain ARM request for int, stg and prod environments for both Classic and HCP.
+
 Clusters:
 - https://armprodeus.eastus.kusto.windows.net
 - https://armprodweu.westeurope.kusto.windows.net
