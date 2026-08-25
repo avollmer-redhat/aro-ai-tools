@@ -349,8 +349,17 @@ This prevents spending unnecessary time manually chasing stale tickets.
    see the `jira-workflow` skill.
 
 8. **Team field** (`customfield_10001`): The source of truth for team
-   ownership. Pass as `{"name": "ARO HCP - Service Lifecycle West"}`. During
-   grooming, check for tickets missing this field and set it when touching
-   any ticket. Components like `aro-hcp-service-lifecycle` and team backlog
-   labels are legacy mechanisms and should not be relied upon for team
+   ownership. When **editing** an existing ticket via `mcp_jira_editJiraIssue`,
+   pass the team ID as a **bare string** — not an object:
+   `"customfield_10001": "6848a854-2fcb-49c8-9198-df4e8f80cfd3"`.
+   Passing `{"name": "..."}` or `{"id": "..."}` to `editJiraIssue` will fail
+   with "Team id is not valid". To find a team's ID, read
+   `customfield_10001.id` from any ticket that already has the desired team
+   set. Known IDs:
+   - `ARO HCP - Service Lifecycle West`: `6848a854-2fcb-49c8-9198-df4e8f80cfd3`
+   - `ARO HCP - Service Lifecycle`: `dc261cbc-b81e-4292-9b03-0e7a741eac28`
+
+   During grooming, check for tickets missing this field and set it when
+   touching any ticket. Components like `aro-hcp-service-lifecycle` and team
+   backlog labels are legacy mechanisms and should not be relied upon for team
    identification. Use `cf[10001]` in JQL to filter by team.
