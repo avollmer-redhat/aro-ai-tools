@@ -34,7 +34,7 @@ $Subcommand = "builds"
 
 function Show-Help {
     $help = @"
-get-releases.ps1 — List ARO HCP pipeline releases (ADO builds) for one environment
+get-releases.ps1 -- List ARO HCP pipeline releases (ADO builds) for one environment
 
 USAGE:
     .\get-releases.ps1 -Environment <env> [options]

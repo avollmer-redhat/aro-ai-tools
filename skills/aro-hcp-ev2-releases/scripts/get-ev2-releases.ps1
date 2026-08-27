@@ -34,7 +34,7 @@ $Subcommand = "ev2"
 
 function Show-Help {
     $help = @"
-get-ev2-releases.ps1 — List ARO HCP EV2 rollouts for one environment
+get-ev2-releases.ps1 -- List ARO HCP EV2 rollouts for one environment
 
 USAGE:
     .\get-ev2-releases.ps1 -Environment <env> [options]
