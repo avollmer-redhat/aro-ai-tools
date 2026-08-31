@@ -289,8 +289,8 @@ order:
 | Pattern | URL Template |
 |---------|-------------|
 | `#NNNN` (bare PR number) | `https://github.com/Azure/ARO-HCP/pull/NNNN` |
-| `AROSLSRE-NNNN` | `https://redhat-internal.atlassian.net/browse/AROSLSRE-NNNN` |
-| `OCMBUGS-NNNN`, `OCMSVC-NNNN`, or any `PROJ-NNNN` Jira key | `https://redhat-internal.atlassian.net/browse/PROJ-NNNN` |
+| `AROSLSRE-NNNN` | `https://redhat.atlassian.net/browse/AROSLSRE-NNNN` |
+| `OCMBUGS-NNNN`, `OCMSVC-NNNN`, or any `PROJ-NNNN` Jira key | `https://redhat.atlassian.net/browse/PROJ-NNNN` |
 | IcM incident number (6–12 digits in IcM context) | `https://portal.microsofticm.com/imp/v5/incidents/details/NNNN/home` |
 | ADO build ID (in rollout/pipeline context) | `https://dev.azure.com/msazure/AzureRedHatOpenShift/_build/results?buildId=NNNN` |
 | ADO PR ID (in sdp-pipelines context) | `https://dev.azure.com/msazure/AzureRedHatOpenShift/_git/sdp-pipelines/pullrequest/NNNN` |
@@ -645,7 +645,7 @@ it belongs to SLC before acting:
 ### Automation Status
 
 Automated classification is being built under
-[ARO-26244](https://redhat-internal.atlassian.net/browse/ARO-26244) — check
+[ARO-26244](https://redhat.atlassian.net/browse/ARO-26244) — check
 that epic for current status. Until automation is complete, manual
 classification follows the same taxonomy.
 
