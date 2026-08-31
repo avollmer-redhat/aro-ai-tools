@@ -644,12 +644,10 @@ it belongs to SLC before acting:
 
 ### Automation Status
 
-Automated classification is being built under [ARO-26244](https://redhat-internal.atlassian.net/browse/ARO-26244):
-- Taxonomy labels: live ([ARO-28139](https://redhat-internal.atlassian.net/browse/ARO-28139))
-- Classification engine: done ([ARO-28140](https://redhat-internal.atlassian.net/browse/ARO-28140))
-- Triage workflow integration: in progress ([ARO-28141](https://redhat-internal.atlassian.net/browse/ARO-28141))
-
-Until automation is complete, manual classification follows the same taxonomy.
+Automated classification is being built under
+[ARO-26244](https://redhat-internal.atlassian.net/browse/ARO-26244) — check
+that epic for current status. Until automation is complete, manual
+classification follows the same taxonomy.
 
 ## Escalation
 
